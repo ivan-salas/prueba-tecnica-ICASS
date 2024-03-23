@@ -19,7 +19,7 @@ Proyecto de aplicación que simula la interesante vida de las hormigas!, en este
     - Configurar atributos de los recursos en Nest
     - Instalar TypeOrm y paquete PostgreSql
 
-    Dichas tareas del sprint 1 se realizaron en el proyecto de Nest.Js `ants-simulator`. Se logró hacer el Setup inicial, crear los recursos iniciales, configurar los atributos de los recursos y se instaló TypeOrm. El tiempo previsto por las tareas era entre 2-3 horas, sin embargo hubieron tareas que se realizaron en menos tiempo, ya que se tenía experiencia previa en el desarrollo con Nest.Js, y fueron tareas continuas que se pudieron realizar simultáneamente.
+    Dichas tareas del sprint 1 se realizaron en el proyecto de Nest.Js `ants-simulator.rar`. Se logró hacer el Setup inicial, crear los recursos iniciales, configurar los atributos de los recursos y se instaló TypeOrm. El tiempo previsto por las tareas era entre 2-3 horas, sin embargo hubieron tareas que se realizaron en menos tiempo, ya que se tenía experiencia previa en el desarrollo con Nest.Js, y fueron tareas continuas que se pudieron realizar simultáneamente.
 
 Muchas gracias por la atención!
 Proyecto realizado por Iván Salas Aedo.
