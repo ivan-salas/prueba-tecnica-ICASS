@@ -1,0 +1,42 @@
+Ejemplos de cosas del hormiguero podrían modelarse siguiendo estructuras de datos tales como: Array, Lista, cola, arboles y/o diccionarios.
+
+Primero partamos listando las cosas del hormiguero que son necesarias de modelar:
+    
+    1. La reina debe poner huevos. Es decir debemos modelar la producción de huevos, la reina ya es una entidad que se modela por si sola. tambien ya tenemos un parametro que es la cantidad de huevos que pone por dia. faltaria modelar el parametro de la reina que define la cantidad de huevos que pone por dia. 
+
+    2. Las princesas cada primavera deben realizar un vuelo nupcial y aparearse con los principes, luego excavan un agujero en algún lugar para iniciar un nuevo hormiguero. Se tiene que mantener algún registro del tiempo y tener un trigger para que las princesas realicen el vuelo nupcial en primavera. También se debe modelar la zona en donde están los hormiguero y lugares en donde se pueden excavar nuevos hormigueros.
+
+    3. Los principes deben aparearse con las princesas. Ellos tambien debiesen ser afectados por el trigger de primavera, y debemos modelar un mecanismo para expulsarlos de la colonia una vez cumplen su mision de apareamiento
+
+    4. Las nodrizas deben repartir la comida eficientemente, hay requisitos explicitos: 80% de las larvas reciben comida de obreras, 15% reciben comida de soldado, 4% reciben comida de nodriza, 1% reciben comida de princesas y principes, y al menos una sepulturera. La cantidad de comida que tiene una nodriza ya esta modelado dentro de la propia entidad, falta modelar el algoritmo que reparte la comida, y habría que ver que estructura de datos es la más eficiente para simular las larvas que reciben comida de cada tipo de hormiga.
+
+    5. Las obreras deben recolectar comida, y repartirla entre las nodrizas. Se debe modelar la recolección de comida, y el reparto de la misma entre las nodrizas. Tambien pueden formar grupos de 5 exploradoras, y dejan un rastro de feromonas de la ruta de exploracion a la comida. Hay en definitiva que modelar: la recolección de comida, el reparto de la misma, la formación de grupos de exploradoras y el rastro de feromonas.
+
+    6. Las soldados deben proteger frente a otros animales u hormigas enemigas, cuando aparece una amenza salen las soldados, si mas del 50% de las hormigas han muerto, empieza el repliegue y se dirigen a proteger a la reina, tambien pueden ir a atacar otro hormigero y robar el botin de comida. Se debe modelar el trigger de amenaza, el repliegue, y el ataque a otros hormigueros.
+
+    7. Las sepultureras deben enterrar a las hormigas muertas. Se debe modelar el trigger de muerte, y el entierro de las hormigas muertas.
+
+    8. La comunicación de las hormigas es mediante caminos de feromonas, las feromonas pueden comunicar las siguientes cosas: Amenaza, defender el hormiguero, comida hallada, iniciar exploracion, hormiga muerta, hora de vuelo nupcial. Las hormigas pueden cambiar la feromona del camino, para indicar si hay un peligro como un ataque.
+
+--------------------------------------------------------------------------------------------------------------------
+
+Estructuras de datos a utilizar:
+
+1. Asumiendo que podemos modelar las posiciones de los objetos del simulador en una grilla 2D, se podría usar un grafo para modelar las posiciones de los hormigueros, comida, etc. Se modelaría el "tablero" del mundo simulado. Sobre este grafo se podrian utilizar algoritmos de busqueda en grafos para encontrar la comida, o para encontrar caminos entre hormigueros de forma eficiente.
+
+2. Aparte del grafo mencionado, para modelar los caminos de feromonas sobre este, cada arista podria almacenar una lista (ya que a diferencia de un Array una lista tiene un tamaño variable, que sirve para almacenar la cantidad varibale de feromonas de distintos tipos que pueden ir dejando las hormigas en un punto, aquí estamos asumiendo que un punto de coordenadas pueden cruzarse varios caminos de feromonas, por lo cual debemos almacenar una cantidad variable de feromonas por arista) cada feromona tiene un tipo, y posiblemnte un valor que indique la intensidad de la feromona.
+
+3. Un Array de tamaño fijo igual a 5, ya que se menciona que las exploradoras se agrupan en grupos de tamaño fijo igual a 5 obreras (asumiremos que no pueden haber grupos mayores o menores). Este array podria tener como elementos a las exploradoras, y se podria utilizar para modelar la formación de grupos de exploradoras.
+
+3. Diccionario para ir registrando la comida que almacenan las nodrizas, podria tenerse un diccionario con el id de las nodrizas como llave (recordando que cada hormiga tiene un id unico), y el valor de la cantidad de comida que tiene cada una. Tambien se podria utilizar otro diccionario para registrar la comida que están recibiendo las larvas, así podemos contabilizar rapidamente cuantas larvas están recibiendo comida de cada tipo de hormiga, y mantener los porcentajes anteriormente mencionados.
+
+4. Una cola con las hormigas que van muriendo, para que las sepultureras las entierren en el orden de muerte, dicho de otra forma, las hormigas que mueren se van encolando en la cola, y las sepultureras las van desencolando para enterrarlas.
+
+5. Se mencionó que las hormigas tienen un orden estamental y jerarquico. Por lo que una forma para representar esta jerarquia podria ser utilizar un arbol donde la reina sería la raiz del árbol, ya que es única por hormiguero, y las demás hormigas serían los nodos hijos de la reina.
+
+6. De ser necesario podría hacerse una tabla de Hash, que utilice como llave el id unico de alguna hormiga, y como valor el objeto hormiga en si. Esto podría ser útil para buscar rápidamente una hormiga en particular, por ejemplo si se necesita buscar a alguna nodriza par ver cuanta comida tiene, o ver si una hormiga en particular está muerta.
+
+
+
+    
+

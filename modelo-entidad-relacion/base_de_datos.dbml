@@ -1,0 +1,73 @@
+// Este es el archivo .dbml, es un un database markdown language, es un lenguaje de marcado para definir bases de datos
+
+// 1. Definicion de tables
+
+Table hormiguero {
+  id int [pk]
+}
+
+Table reina {
+  id int [pk]
+  egg_daily_quantity int 
+}
+
+Table princesa {
+  id int [pk]
+}
+
+Table principe {
+  id int [pk]
+}
+
+Table nodriza {
+  id int [pk]
+  obrera_food_reserve int 
+  soldado_food_reserve int
+  nodriza_food_reserve int
+  principe_food_reserve int
+  sepulturera_food_reserve int
+  total_reserve_status nodriza.total_reserve_status
+}
+
+Enum nodriza.total_reserve_status {
+  out_of_stock
+  in_stock
+  running_low [note: 'less than 20'] //
+}
+
+Table obrera {
+  id int [pk]
+}
+
+Enum soldado.status {
+  full_health
+  medium_health
+  low_health
+  critical_health
+}
+
+Table soldado {
+  id int [pk]
+  health int
+  attack_damage int
+  status soldado.status
+}
+
+Table sepulturera {
+  id int [pk]
+}
+
+// References between tables
+Ref: hormiguero.id - reina.id // Relacion one to one entre hormiguero y reina
+
+Ref: princesa.id > hormiguero.id // Relacion many to one entre princesa y hormiguero
+
+Ref: principe.id > hormiguero.id // Relacion many to one entre principe y hormiguero
+
+Ref: nodriza.id > hormiguero.id // Relacion many to one entre nodriza y hormiguero
+
+Ref: obrera.id > hormiguero.id // Relacion many to one entre obrera y hormiguero
+
+Ref: soldado.id > hormiguero.id // Relacion many to one entre soldado y hormiguero
+
+Ref: sepulturera.id > hormiguero.id // Relacion many to one entre sepulturera y hormiguero
